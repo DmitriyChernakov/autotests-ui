@@ -146,7 +146,7 @@ class CreateCoursePage(BasePage):
 
     def check_visible_exercises_title(self):
         expect(self.exercises_title).to_be_visible()
-        expect(self.exercises_title).to_have_value('Exercises')
+        expect(self.exercises_title).to_have_text('Exercises')
 
     def check_visible_create_exercise_button(self):
         expect(self.create_exercise_button).to_be_visible()
@@ -158,7 +158,7 @@ class CreateCoursePage(BasePage):
         expect(self.exercises_empty_view_icon).to_be_visible()
 
         expect(self.exercises_empty_view_title).to_be_visible()
-        expect(self.exercises_empty_view_title).to_have_value('There is no exercises')
+        expect(self.exercises_empty_view_title).to_have_text('There is no exercises')
 
         expect(self.exercises_empty_view_description).to_be_visible()
         expect(self.exercises_empty_view_description).to_have_text(

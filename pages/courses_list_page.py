@@ -62,7 +62,7 @@ class CoursesListPage(BasePage):
         expect(self.course_max_score_text.nth(index)).to_have_text(f'Max score: {max_score}')
 
         expect(self.course_min_score_text.nth(index)).to_be_visible()
-        expect(self.course_min_score_text.nth(index)).to_have_text('Min score: {min_score}')
+        expect(self.course_min_score_text.nth(index)).to_have_text(f'Min score: {min_score}')
 
         expect(self.course_estimate_time_text.nth(index)).to_be_visible()
         expect(self.course_estimate_time_text.nth(index)).to_have_text(
