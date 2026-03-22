@@ -28,3 +28,6 @@ logs/
 .idea/*
 *.swp
 *.swo
+
+# Other
+browser-state.json
