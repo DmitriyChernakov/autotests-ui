@@ -1,6 +1,8 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 
 from components.authentication.registration_form_component import RegistrationFormComponent
+from elements.button import Button
+from elements.link import Link
 from pages.base_page import BasePage
 
 
@@ -10,13 +12,15 @@ class RegistrationPage(BasePage):
 
         self.registration_form = RegistrationFormComponent(page)
 
-        self.registration_button = page.get_by_test_id('registration-page-registration-button')
-        self.login_link = page.get_by_test_id('registration-page-login-link')
+        self.registration_button = Button(
+            page=page,
+            locator='registration-page-registration-button',
+            name='Registration',
+        )
+        self.login_link = Link(page=page, locator='registration-page-login-link', name='Login')
 
     def click_registration_button(self):
-        expect(self.registration_button).to_be_visible()
         self.registration_button.click()
 
     def click_login_link(self):
-        expect(self.login_link).to_be_visible()
         self.login_link.click()
