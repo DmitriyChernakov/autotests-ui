@@ -34,3 +34,4 @@ browser-state.json
 
 # Allure
 allure-results/
+allurerc.*
