@@ -55,6 +55,8 @@ class TestCourses:
             index=0, title="Playwright", max_score="100", min_score="10", estimated_time="2 weeks"
         )
 
+    @allure.title("Edit course")
+    @allure.severity(Severity.CRITICAL)
     def test_edit_course(self, courses_list_page: CoursesListPage, create_course_page: CreateCoursePage):
         create_course_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create')
         create_course_page.create_course_form.fill(
