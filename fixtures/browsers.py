@@ -1,26 +1,17 @@
 from typing import Any, Generator
 
-import allure
 import pytest
 from _pytest.fixtures import SubRequest
 from playwright.sync_api import Page, Playwright
 
 from pages.authentication.registration_page import RegistrationPage
+from tools.playwright.pages import initialize_playwright_page
 
 
 @pytest.fixture
 def chromium_page(request: SubRequest, playwright: Playwright) -> Generator[Page, Any, None]:
     """Фикстура для инициализации и открытия новой страницы."""
-    browser = playwright.chromium.launch(headless=False)
-    context = browser.new_context()
-    context.tracing.start(screenshots=True, snapshots=True, sources=True)
-
-    yield context.new_page()
-
-    context.tracing.stop(path=f"./tracing/{request.node.name}.zip")
-    browser.close()
-
-    allure.attach.file(source=f"./tracing/{request.node.name}.zip", name="trace", extension="zip")
+    yield from initialize_playwright_page(playwright=playwright, test_name=request.node.name)
 
 
 @pytest.fixture(scope='session')
@@ -46,13 +37,8 @@ def chromium_page_with_state(
         playwright: Playwright
 ) -> Generator[Page, Any, None]:
     """Фикстура для открытия новой страницы, использующая сохраненное состояние из фикстуры initialize_browser_state"""
-    browser = playwright.chromium.launch(headless=False)
-    context = browser.new_context(storage_state="browser-state.json")
-    context.tracing.start(screenshots=True, snapshots=True, sources=True)
-
-    yield context.new_page()
-
-    context.tracing.stop(path=f"./tracing/{request.node.name}.zip")
-    browser.close()
-
-    allure.attach.file(source=f"./tracing/{request.node.name}.zip", name="trace", extension="zip")
+    yield from initialize_playwright_page(
+        playwright=playwright,
+        test_name=request.node.name,
+        storage_state="browser-state.json"
+    )

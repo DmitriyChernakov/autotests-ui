@@ -23,6 +23,7 @@ __pycache__/
 *.log
 logs/
 tracing/
+videos/
 
 # IDE
 .idea/
