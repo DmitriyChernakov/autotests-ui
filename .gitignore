@@ -10,8 +10,8 @@ ENV/*
 *.db
 
 # Configuration files
-*.env
-*.conf
+#*.env
+#*.conf
 
 # Python cache
 __pycache__/
