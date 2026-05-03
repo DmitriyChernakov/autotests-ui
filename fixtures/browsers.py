@@ -1,11 +1,13 @@
 from typing import Any, Generator
-from config import settings
+
 import pytest
 from _pytest.fixtures import SubRequest
 from playwright.sync_api import Page, Playwright
 
+from config import settings
 from pages.authentication.registration_page import RegistrationPage
 from tools.playwright.pages import initialize_playwright_page
+from tools.routes import AppRoute
 
 
 @pytest.fixture
@@ -18,11 +20,11 @@ def chromium_page(request: SubRequest, playwright: Playwright) -> Generator[Page
 def initialize_browser_state(playwright: Playwright):
     """Фикстура для регистрации нового пользователя и сохранения состояния браузера для последующего использования"""
     browser = playwright.chromium.launch(headless=False)
-    context = browser.new_context()
+    context = browser.new_context(base_url=settings.get_base_url())
     page = context.new_page()
 
     registration_page = RegistrationPage(page=page)
-    registration_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
+    registration_page.visit(AppRoute.REGISTRATION)
     registration_page.registration_form.fill(
         email=settings.test_user.email,
         username=settings.test_user.username,
