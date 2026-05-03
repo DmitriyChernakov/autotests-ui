@@ -5,6 +5,7 @@ from playwright.sync_api import Playwright, Page
 from pytest_playwright.pytest_playwright import browser_type
 
 from config import settings, Browser
+from tools.playwright.mocks import mock_static_resources
 
 
 def initialize_playwright_page(
@@ -20,7 +21,9 @@ def initialize_playwright_page(
         record_video_dir=settings.videos_dir
     )
     context.tracing.start(screenshots=True, snapshots=True, sources=True)
+
     page = context.new_page()
+    mock_static_resources(page)
 
     yield page
 
