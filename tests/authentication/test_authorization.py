@@ -51,6 +51,7 @@ class TestAuthorization:
         )
         login_page.click_login_button()
 
+    @pytest.mark.xdist_group(name="authorization-group")
     @pytest.mark.parametrize(
         'email, password',
         [
