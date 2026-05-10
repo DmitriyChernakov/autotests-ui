@@ -22,8 +22,6 @@ __pycache__/
 # Logs
 *.log
 logs/
-tracing/
-videos/
 
 # IDE
 .idea/
@@ -31,9 +29,13 @@ videos/
 *.swp
 *.swo
 
-# Other
-browser-state.json
+# Testing artifacts
+*.html
+*.json
+tracing/
+videos/
 
 # Allure
 allure-results/
+allure-report/
 allurerc.*
