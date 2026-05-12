@@ -55,6 +55,12 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
+      - name: Debug files
+        run: |
+          pwd
+          ls -la
+          find . -maxdepth 3
+
       - name: Generates Allure Report with history
         uses: simple-elf/allure-report-action@v1.13
         if: always()
