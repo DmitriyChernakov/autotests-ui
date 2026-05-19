@@ -31,7 +31,34 @@ jobs:
         run: |
           pytest -m regression --alluredir=allure-results -n 2
 
-      - name: Upload allure-results folder
+      - name: Restore Coverage history
+        uses: actions/cache/restore@v5
+        with:
+          path: coverage-history.json
+          key: coverage-history-${{ github.run-id }}
+          restore-keys: |
+            coverage-history-
+
+      - name: Generate Coverage report
+        run: |
+          ui-coverage-tool save-report
+
+      - name: Cache Coverage history
+        if: always()
+        uses: actions/cache/save@v5
+        with:
+          path: coverage-history.json
+          key: coverage-history-${{ github.run-id }}
+
+      - name: Upload Coverage results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage-report
+          path: coverage.html
+
+      - name: Upload Allure results
+        if: always()
         uses: actions/upload-artifact@v7
         with:
           name: allure-results

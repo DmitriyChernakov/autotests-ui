@@ -39,3 +39,9 @@ videos/
 allure-results/
 allure-report/
 allurerc.*
+
+#Coverage
+coverage.html
+coverage-results
+coverage-report.json
+coverage-history.json
