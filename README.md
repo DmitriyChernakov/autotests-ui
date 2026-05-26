@@ -1,7 +1,7 @@
 # Playwright + Pytest E2E UI Tests
 
 [![Python](https://img.shields.io/badge/Python-3.12-blue)](https://www.python.org/)
-[![pytest](https://img.shields.io/badge/pytest-8.x-orange)](https://docs.pytest.org/)
+[![pytest](https://img.shields.io/badge/pytest-9.x-orange)](https://docs.pytest.org/)
 [![Playwright](https://img.shields.io/badge/Playwright-1.x-green)](https://playwright.dev/python/)
 [![Allure](https://img.shields.io/badge/Allure-Report-yellow)](https://docs.qameta.io/allure/)
 
